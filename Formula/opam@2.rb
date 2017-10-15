@@ -1,21 +1,12 @@
 class OpamAT2 < Formula
   desc "The OCaml package manager v2.0.0 (beta)"
   homepage "https://opam.ocaml.org"
-  url "https://github.com/ocaml/opam/releases/download/2.0.0-beta3/opam-full-2.0.0-beta3.tar.gz"
-  sha256 "83d61052b29e7c08674852f4d607e5403720c5fd85664c3b340acf9a938fd9e6"
+  url "https://github.com/ocaml/opam/releases/download/2.0.0-beta4/opam-full-2.0.0-beta4.tar.gz"
+  sha256 "3142adf9e2b43c79a0d44298312a38cf19ffe68f65ccd838144d839ae3adcd9f"
   head "https://github.com/ocaml/opam.git"
 
   depends_on "ocaml" => :recommended
-
-  # aspcud has a fairly large buildtime dep tree, and uses gringo,
-  # which requires C++11 and is inconvenient to install pre-10.8
-  if MacOS.version > 10.7
-    depends_on "aspcud" => :recommended
-  else
-    depends_on "aspcud" => :optional
-  end
-
-  needs :cxx11 if build.with? "aspcud"
+  depends_on "glpk" => :build
 
   def install
     ENV.deparallelize
@@ -31,8 +22,8 @@ class OpamAT2 < Formula
     system "make", "man"
     system "make", "install"
 
-    bash_completion.install "shell/opam_completion.sh"
-    zsh_completion.install "shell/opam_completion_zsh.sh" => "_opam"
+    bash_completion.install "src/state/complete.sh"
+    zsh_completion.install "src/state/complete.zsh" => "_opam"
   end
 
   def caveats; <<-EOS.undent
@@ -43,7 +34,7 @@ class OpamAT2 < Formula
 
     Run the following to initialize your environment variables:
 
-    $  eval `opam config env`
+    $  eval `opam env`
 
     To export the needed variables every time, add them to your dotfiles.
       * On Bash, add them to `~/.bash_profile`.
