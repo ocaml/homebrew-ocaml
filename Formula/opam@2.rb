@@ -1,22 +1,17 @@
 class OpamAT2 < Formula
-  desc "The OCaml package manager v2.0.0 (beta)"
+  desc "The OCaml package manager v2.0.0 (release candidate)"
   homepage "https://opam.ocaml.org"
-  url "https://github.com/ocaml/opam/releases/download/2.0.0-beta6/opam-full-2.0.0-beta6.tar.gz"
-  sha256 "246f89e12c949c776aa02b29798fa798195e655941e69a423d6e1a6455b5340e"
+  url "https://github.com/ocaml/opam/releases/download/2.0.0-rc/opam-full-2.0.0-rc.tar.gz"
+  sha256 "1196b5a1aee66aa87eb01c005733992612718b6ee157b777340878f0e0434af6"
   head "https://github.com/ocaml/opam.git"
 
-  # Do not depend on OCaml, it always needs to be built for now
-  # See https://github.com/ocaml/homebrew-ocaml/pull/4
-  #depends_on "ocaml" => :recommended
+  depends_on "ocaml" => :recommended
   depends_on "glpk" => :build
 
   def install
     ENV.deparallelize
 
     build_ocaml = build.without? "ocaml"
-    # Always build OCaml, since opam < 2.0.0-beta7 fails on OCaml 4.06
-    # See https://github.com/ocaml/homebrew-ocaml/pull/4
-    build_ocaml = true
 
     if build_ocaml
       system "make", "cold", "CONFIGURE_ARGS=--prefix #{prefix} --mandir #{man}"
