@@ -1,8 +1,8 @@
 class OpamAT2 < Formula
   desc "The OCaml package manager v2.0.0 (release candidate)"
   homepage "https://opam.ocaml.org"
-  url "https://github.com/ocaml/opam/releases/download/2.0.0-rc/opam-full-2.0.0-rc.tar.gz"
-  sha256 "1196b5a1aee66aa87eb01c005733992612718b6ee157b777340878f0e0434af6"
+  url "https://github.com/ocaml/opam/releases/download/2.0.0-rc2/opam-full-2.0.0-rc2.tar.gz"
+  sha256 "030ab2c0dbc82fb6fcb32dea837c7adf237620e4aa1ef8045b33ae673ee9cecd"
   head "https://github.com/ocaml/opam.git"
 
   depends_on "ocaml" => :recommended
@@ -37,6 +37,13 @@ class OpamAT2 < Formula
     Run the following to initialize your environment variables:
 
     $  eval `opam env`
+
+    Starting in 2.0.0~rc2 is also possible to set up a shell hook, so this
+    is not required anymore.
+
+    If upgrading from 2.0.0~rc to enable sandboxing you need to run
+
+    $ opam init --reinit -ni
 
     To export the needed variables every time, add them to your dotfiles.
       * On Bash, add them to `~/.bash_profile`.
