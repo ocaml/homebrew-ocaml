@@ -24,8 +24,8 @@ class OpamAT2 < Formula
     system "make", "man"
     system "make", "install"
 
-    bash_completion.install "src/state/complete.sh"
-    zsh_completion.install "src/state/complete.zsh" => "_opam"
+    bash_completion.install "src/state/shellscripts/complete.sh"
+    zsh_completion.install "src/state/shellscripts/complete.zsh" => "_opam"
   end
 
   def caveats; <<~EOS
