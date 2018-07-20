@@ -4,9 +4,15 @@ class OpamAT2 < Formula
   url "https://github.com/ocaml/opam/releases/download/2.0.0-rc3/opam-full-2.0.0-rc3.tar.gz"
   sha256 "d7ae1ce1be0c794dc557a50dee1b3844b2b646f9639279e02efb978471015e7c"
   head "https://github.com/ocaml/opam.git"
+  revision 1
 
   depends_on "ocaml" => :recommended
   depends_on "glpk" => :build
+
+  patch do
+    url "https://github.com/dra27/opam/commit/818aedbcf064bf377384b75d9fb13d521956ee45.diff"
+    sha256 "02959b1e7c69517da8a69dd7bef6f70153a6b34ee156d9b56f8ac4dd5610af21"
+  end
 
   def install
     ENV.deparallelize
