@@ -37,7 +37,7 @@ class OpamAT2 < Formula
 
     Run the following to initialize your environment variables:
 
-    $  eval `opam env`
+    $  eval $(opam env)
 
     Starting in 2.0.0~rc2 is also possible to set up a shell hook, so this
     is not required anymore.
