@@ -1,10 +1,9 @@
 class OpamAT2 < Formula
-  desc "The OCaml package manager v2.0.0 (release candidate)"
+  desc "The OCaml package manager v2.0.0"
   homepage "https://opam.ocaml.org"
-  url "https://github.com/ocaml/opam/releases/download/2.0.0-rc4/opam-full-2.0.0.tar.gz"
+  url "https://github.com/ocaml/opam/releases/download/2.0.0/opam-full-2.0.0.tar.gz"
   sha256 "9dad4fcb4f53878c9daa6285d8456ccc671e21bfa71544d1f926fb8a63bfed25"
   head "https://github.com/ocaml/opam.git"
-  version "2.0.0-rc4"
 
   depends_on "ocaml" => :recommended
   depends_on "glpk" => :build
